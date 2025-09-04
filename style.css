@@ -1,0 +1,652 @@
+/*
+--- EMPRESARIO HOMEPAGE STYLESHEET ---
+*/
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+    --primary-color: #0d2c40;   /* Deep Navy/Teal */
+    --secondary-color: #007bff; /* Vibrant Blue */
+    --accent-color: #f2c94c;   /* Gold/Yellow */
+    --text-color: #333;
+    --text-light: #fdfdfd;
+    --bg-color: #ffffff;
+    --bg-light-gray: #f8f9fa;
+    --border-color: #dee2e6;
+    --shadow-light: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-hover: 0 8px 20px rgba(0,0,0,0.1);
+    --font-primary: 'Inter', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+    --transition-speed: 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; text-align: center; }
+h3 { font-size: 1.25rem; }
+p { margin-bottom: 1rem; color: #555; }
+a { color: var(--secondary-color); text-decoration: none; transition: color var(--transition-speed); }
+a:hover { color: var(--primary-color); }
+img { max-width: 100%; height: auto; }
+ul { list-style: none; padding: 0; }
+
+/* --- 2. Utility Classes --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* --- 3. Header & Navigation --- */
+.main-header {
+    background-color: transparent;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.main-header.scrolled {
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    position: relative;
+    display: block;
+    width: 187.5px;
+    height: 50px;
+}
+
+.logo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.4s ease;
+}
+
+.logo .logo-scrolled {
+    opacity: 0;
+}
+
+.main-header.scrolled .logo-initial {
+    opacity: 0;
+}
+
+.main-header.scrolled .logo-scrolled {
+    opacity: 1;
+}
+
+
+.main-nav ul {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.main-nav a {
+    font-weight: 500;
+    color: var(--text-light);
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.4s ease;
+}
+
+.main-header.scrolled .main-nav a {
+    color: var(--secondary-color);
+}
+
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width var(--transition-speed);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+
+/* --- 4. Hero Section (UPDATED) --- */
+#hero {
+    background: linear-gradient(rgba(13, 44, 64, 0.6), rgba(13, 44, 64, 0.6)), 
+                url('images/1010.mp4') no-repeat center center;
+    background-size: cover;   /* Ensures image covers entire hero area */
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.hero-content-wrapper { /* New wrapper for side-by-side layout */
+    display: flex;
+    flex-direction: column; /* Stacks vertically on small screens */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2.5rem;
+    width: 100%; /* Ensure it takes full width of container */
+    max-width: 1200px; /* Aligns with .container max-width */
+    padding: 0 1rem;
+}
+
+.hero-text-content {
+    flex: 1; /* Allows text to take available space */
+    max-width: 600px; /* Limit width of text for readability */
+}
+
+.hero-title {
+    color: var(--text-light);
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+
+.tagline {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    color: var(--text-light);
+}
+
+.cta-button {
+    background: var(--secondary-color);
+    background: linear-gradient(45deg, var(--secondary-color), #0056b3);
+    color: var(--text-light);
+    padding: 1.1rem 2.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform var(--transition-speed), box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    display: inline-block;
+    border: none;
+    animation: pulse 2s infinite;
+}
+
+.cta-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.5);
+    color: var(--text-light);
+    animation-play-state: paused;
+}
+
+.hero-video-container {
+    flex: 1; /* Allows video to take available space */
+    position: relative;
+    width: 100%; /* Takes full width on small screens */
+    max-width: 600px; /* Limit width of video for aesthetic */
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-hover);
+}
+
+.hero-video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video covers the container */
+}
+
+
+/* --- 5. Content Sections (General) --- */
+.content-section {
+    padding: 5rem 0;
+}
+
+.content-section-light {
+    padding: 5rem 0;
+    background-color: var(--bg-light-gray);
+}
+
+.content-section h2, .content-section-light h2 {
+    margin-bottom: 3rem;
+}
+
+/* --- 6. Card Grid --- */
+.card-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+
+.card {
+    background-color: var(--bg-color);
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    border: 1px solid var(--border-color);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+/* --- 7. Logo Grid --- */
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: center;
+    justify-items: center; /* Center logos horizontally */
+}
+
+.logo-grid img {
+    /* Default styles for all logos */
+    width: 100%;
+    max-width: 250px; /* Default max width */
+    height: auto;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+    transition: transform var(--transition-speed);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.logo-grid img:hover {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Specific styles for larger logos */
+.logo-grid img[src="images/nexa-logo.png"] {
+    max-width: 350px; /* Custom size for Nexa logo */
+}
+
+.logo-grid img[src="images/growth-gurus-logo.png"] {
+    max-width: 400px; /* Increased size for Growth Gurus logo */
+}
+
+
+/* --- 8. Team Section --- */
+.team-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+}
+
+.team-card {
+    text-align: center;
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+
+
+    
+}
+
+/* Updated Team Image Styles */
+/* Updated Team Image Styles */
+.team-img {
+    width: 180px;         /* Larger size */
+    height: 180px;        /* Make square */
+    border-radius: 8px;   /* Slightly rounded corners instead of circle */
+    object-fit: cover;    /* Ensures image covers the box without stretching */
+    margin-bottom: 1rem;
+    border: 4px solid var(--border-color);
+}
+
+.team-role {
+    font-weight: 500;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+/* --- 9. Contact Section --- */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+}
+
+.email-link {
+    display: inline-block;
+    margin: 1rem 0;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.social-icons {
+    margin-top: 1rem;
+}
+
+.social-icons a {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin: 0 0.75rem;
+    transition: transform var(--transition-speed), color var(--transition-speed);
+}
+
+.social-icons a:hover {
+    color: var(--secondary-color);
+    transform: scale(1.2);
+}
+
+/* --- 10. Footer --- */
+/* --- Footer with Background Image --- */
+.main-footer {
+    position: relative; /* Needed for overlay */
+    background: url('images/footer-background.jpg') no-repeat center center;
+    background-size: cover;   /* Cover entire footer */
+    color: var(--text-light);
+    padding: 3rem 0;
+}
+
+.main-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13, 44, 64, 0.6); /* semi-transparent overlay */
+    z-index: 1;
+    pointer-events: none;
+}
+
+.footer-container {
+    position: relative; /* Keep content above overlay */
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer-logo img {
+    height: 60px;
+    opacity: 0.9;
+}
+
+.footer-info {
+    text-align: center;
+}
+
+.footer-info p {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.main-footer a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.main-footer a:hover {
+    color: var(--text-light);
+    text-decoration: underline;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* --- 10a. Automatic Image Slider --- */
+.slider-container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--shadow-hover);
+}
+
+.slider-track {
+    display: flex;
+    width: 1000%;
+    height: 100%;
+    animation: slide 25s linear infinite;
+}
+
+.slider-track img {
+    width: 10%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- 11. Animations --- */
+
+/* Keyframe Animations */
+@keyframes slide {
+    0%, 8% { transform: translateX(0%); }
+    10%, 18% { transform: translateX(-10%); }
+    20%, 28% { transform: translateX(-20%); }
+    30%, 38% { transform: translateX(-30%); }
+    40%, 48% { transform: translateX(-40%); }
+    50%, 58% { transform: translateX(-50%); }
+    60%, 68% { transform: translateX(-60%); }
+    70%, 78% { transform: translateX(-70%); }
+    80%, 88% { transform: translateX(-80%); }
+    90%, 100% { transform: translateX(-90%); }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    }
+}
+
+/* Hero Section Animation */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+.hero-title.animate-fade-in { animation-delay: 0.2s; }
+.tagline.animate-fade-in { animation-delay: 0.4s; }
+.cta-button.animate-fade-in { animation-delay: 0.6s; }
+.hero-video-container.animate-fade-in { animation-delay: 0.8s; } /* Added delay for video */
+
+
+/* Scroll Animation Setup */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll:not(h2) {
+    transform: translateY(20px);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for cards */
+.card.animate-on-scroll.visible:nth-child(1) { transition-delay: 0.1s; }
+.card.animate-on-scroll.visible:nth-child(2) { transition-delay: 0.2s; }
+.card.animate-on-scroll.visible:nth-child(3) { transition-delay: 0.3s; }
+.card.animate-on-scroll.visible:nth-child(4) { transition-delay: 0.1s; }
+.card.animate-on-scroll.visible:nth-child(5) { transition-delay: 0.2s; }
+.card.animate-on-scroll.visible:nth-child(6) { transition-delay: 0.3s; }
+
+
+/* --- 12. Responsive Design (Media Queries) --- */
+
+@media (min-width: 768px) {
+    h1 { font-size: 3rem; }
+    .hero-title { font-size: 3.5rem; }
+
+    .hero-content-wrapper {
+        flex-direction: row; /* Side-by-side on larger screens */
+        text-align: left;
+        gap: 4rem; /* More space between text and video */
+    }
+
+    .hero-text-content {
+        align-items: flex-start; /* Align text to the start */
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .logo-grid {
+        grid-template-columns: repeat(3, 1fr); /* You can adjust this for 3 or more columns */
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .footer-info {
+        text-align: right;
+    }
+}
+
+@media (min-width: 1280px) {
+    h1 { font-size: 4rem; }
+    .hero-title { font-size: 4rem; }
+
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .logo-grid {
+        /* This will now show 3 logos per row on large screens */
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .main-nav ul {
+        gap: 2rem;
+    }
+    
+}
+/* --- 13. Back to Top Button --- */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 12px 15px;
+    border-radius: 50%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(142, 214, 250, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 9999;
+}
+
+/* Show button when user scrolls down */
+body:has(:target) .back-to-top,
+.back-to-top:target,
+body:not(:target) .back-to-top {
+    /* CSS fallback for browsers without :has() */
+}
+
+.back-to-top:hover {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Use scroll + focus for older browsers */
+html:has(body:focus-within) .back-to-top {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Pure CSS Scroll Show - works by setting #top anchor at top */
+#top:target ~ .back-to-top {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
+/* Make it always visible on scroll (simple fallback) */
+@media (hover: hover) {
+  .back-to-top {
+    opacity: 0.7;
+    pointer-events: auto;
+  }
+  .back-to-top:hover {
+    opacity: 1;
+  }
+}
